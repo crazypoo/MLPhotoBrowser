@@ -1,6 +1,6 @@
 //
-//  @Author : <#Author#>
-//  @Desc   : <#Desc#>
+//  @Author : MakeZL
+//  @Desc   : 查看头像
 //
 //  MLPhotoBrowser
 //

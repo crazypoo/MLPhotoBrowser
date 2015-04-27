@@ -1,6 +1,6 @@
 //
-//  ZLPhotoPickerBrowserViewController.m
-//  ZLAssetsPickerDemo
+//  MLPhotoBrowserViewController.m
+//  MLPhotoBrowser
 //
 //  Created by 张磊 on 14-11-14.
 //  Copyright (c) 2014年 com.zixue101.www. All rights reserved.

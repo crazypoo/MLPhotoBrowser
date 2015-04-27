@@ -1,6 +1,6 @@
 //
-//  PickerPhoto.h
-//  ZLAssetsPickerDemo
+//  MLPhotoBrowserPhoto.h
+//  MLPhotoBrowser
 //
 //  Created by 张磊 on 14-11-15.
 //  Copyright (c) 2014年 com.zixue101.www. All rights reserved.
