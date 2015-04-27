@@ -16,6 +16,7 @@
 		48CE807B1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80701AEDDC3A00AD85BB /* MLPhotoBrowserPhotoImageView.m */; };
 		48CE807C1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80721AEDDC3A00AD85BB /* MLPhotoBrowserPhotoScrollView.m */; };
 		48CE807D1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80741AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.m */; };
+		48CE80811AEDE3F700AD85BB /* Example1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80801AEDE3F700AD85BB /* Example1ViewController.m */; };
 		48D198F71AED379500762BC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D198F61AED379500762BC2 /* main.m */; };
 		48D198FA1AED379500762BC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D198F91AED379500762BC2 /* AppDelegate.m */; };
 		48D198FD1AED379500762BC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D198FC1AED379500762BC2 /* ViewController.m */; };
@@ -56,6 +57,8 @@
 		48CE80721AEDDC3A00AD85BB /* MLPhotoBrowserPhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserPhotoScrollView.m; sourceTree = "<group>"; };
 		48CE80731AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserPhotoView.h; sourceTree = "<group>"; };
 		48CE80741AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserPhotoView.m; sourceTree = "<group>"; };
+		48CE807F1AEDE3F700AD85BB /* Example1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example1ViewController.h; sourceTree = "<group>"; };
+		48CE80801AEDE3F700AD85BB /* Example1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example1ViewController.m; sourceTree = "<group>"; };
 		48D198F11AED379500762BC2 /* MLPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D198F51AED379500762BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48D198F61AED379500762BC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,6 +145,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		48CE807E1AEDE3E500AD85BB /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				48CE807F1AEDE3F700AD85BB /* Example1ViewController.h */,
+				48CE80801AEDE3F700AD85BB /* Example1ViewController.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		48D198E81AED379500762BC2 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 		48D198F31AED379500762BC2 /* MLPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				48CE807E1AEDE3E500AD85BB /* Example */,
 				48CE805F1AEDDC3A00AD85BB /* MLPhotoBrowser */,
 				48D198F81AED379500762BC2 /* AppDelegate.h */,
 				48D198F91AED379500762BC2 /* AppDelegate.m */,
@@ -365,6 +378,7 @@
 				48CE807B1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoImageView.m in Sources */,
 				48CE807C1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoScrollView.m in Sources */,
 				48CE807D1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.m in Sources */,
+				48CE80811AEDE3F700AD85BB /* Example1ViewController.m in Sources */,
 				48CE80751AEDDC3A00AD85BB /* MLPhotoBrowserAssets.m in Sources */,
 				48CE80771AEDDC3A00AD85BB /* MLPhotoBrowserPhoto.m in Sources */,
 				48CE80791AEDDC3A00AD85BB /* MLPhotoBrowserViewController.m in Sources */,

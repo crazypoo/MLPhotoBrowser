@@ -70,6 +70,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         collectionView.pagingEnabled = YES;
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.bounces = YES;
+        collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_cellIdentifier];
         
@@ -147,9 +148,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     NSAssert(self.dataSource, @"你没成为数据源代理");
-    [self collectionView];
-    // 初始化动画
-    [self startLogddingAnimation];
+    
+    MLPhotoBrowserPhoto *photo = [self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath];
+    
+    [self showHeadPortrait:photo.toView];
 }
 
 - (void)dealloc{
@@ -158,7 +160,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor blackColor];
+    [self reloadData];
+    
 }
 
 #pragma mark - Get
@@ -190,10 +195,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 #pragma makr - init Animation
 - (void)startLogddingAnimation{
-    if (!(self.toView) ) {
-        [self reloadData];
-        return;
-    }
+//    if (!(self.toView) ) {
+//        [self reloadData];
+//        return;
+//    }
     
 //    // 判断是否是控制器
 //    UIView *fromView = object_getIvar(self.dataSource, class_getInstanceVariable([self.dataSource class],"_view"));
@@ -238,7 +243,6 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 #pragma mark - reloadData
 - (void) reloadData{
-    self.collectionView.dataSource = self;
     [self.collectionView reloadData];
     
     // 添加自定义View
@@ -316,16 +320,16 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         [scrollBoxView addSubview:scrollView];
         scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         if (self.currentPage == self.photos.count - 1 && scrollView.ml_x >= 0 && !collectionView.isDragging) {
-            UICollectionView *collecitonView2 = (UICollectionView *)[self getScrollViewBaseViewWithCell:self.toView] ;
-            if ([collecitonView2 isMemberOfClass:[UICollectionView class]]) {
-                UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collecitonView2.collectionViewLayout;
-                if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    scrollView.ml_x = -ZLPickerColletionViewPadding;
-                }else{
-                }
-            }else{
-                scrollView.ml_x = 0;
-            }
+//            UICollectionView *collecitonView2 = (UICollectionView *)[self getScrollViewBaseViewWithCell:self.toView] ;
+//            if ([collecitonView2 isMemberOfClass:[UICollectionView class]]) {
+//                UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collecitonView2.collectionViewLayout;
+//                if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+//                    scrollView.ml_x = -ZLPickerColletionViewPadding;
+//                }else{
+//                }
+//            }else{
+//                scrollView.ml_x = 0;
+//            }
         }
         
     }
@@ -383,12 +387,12 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 #pragma mark - 展示控制器
 - (void)show{
-    BOOL animation = !self.toView;
-    if (animation) {
-        [[[[UIApplication sharedApplication] windows] lastObject] presentViewController:self animated:animation completion:nil];
-    }else{
-        [[self getParsentViewController:self.toView] presentViewController:self animated:animation completion:nil];
-    }
+//    BOOL animation = !self.toView;
+//    if (animation) {
+//    [[[[UIApplication sharedApplication] windows] firstObject] presentViewController:self animated:NO completion:nil];
+//    }else{
+//        [[self getParsentViewController:self.toView] presentViewController:self animated:animation completion:nil];
+//    }
 }
 
 #pragma mark - 删除照片
@@ -480,32 +484,33 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     [mainView addSubview:imageView];
     mainView.clipsToBounds = YES;
     
-    [UIView animateWithDuration:.25 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         imageView.frame = [UIScreen mainScreen].bounds;
     } completion:^(BOOL finished) {
         imageView.hidden = YES;
+        [mainView removeFromSuperview];
         
-        MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
-        photo.photoURL = [NSURL URLWithString:originUrl];
-        photo.photoImage = toImageView.image;
-        photo.thumbImage = toImageView.image;
-        
-        MLPhotoBrowserPhotoScrollView *scrollView = [[MLPhotoBrowserPhotoScrollView alloc] init];
-        
-        __weak typeof(MLPhotoBrowserPhotoScrollView *)weakScrollView = scrollView;
-        scrollView.callback = ^(id obj){
-            [weakScrollView removeFromSuperview];
-            mainView.backgroundColor = [UIColor clearColor];
-            imageView.hidden = NO;
-            [UIView animateWithDuration:.25 animations:^{
-                imageView.frame = tempF;
-            } completion:^(BOOL finished) {
-                [mainView removeFromSuperview];
-            }];
-        };
-        scrollView.frame = [UIScreen mainScreen].bounds;
-        scrollView.photo = photo;
-        [mainView addSubview:scrollView];
+//        MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
+//        photo.photoURL = [NSURL URLWithString:originUrl];
+//        photo.photoImage = toImageView.image;
+//        photo.thumbImage = toImageView.image;
+//        
+//        MLPhotoBrowserPhotoScrollView *scrollView = [[MLPhotoBrowserPhotoScrollView alloc] init];
+//        
+//        __weak typeof(MLPhotoBrowserPhotoScrollView *)weakScrollView = scrollView;
+//        scrollView.callback = ^(id obj){
+//            [weakScrollView removeFromSuperview];
+//            mainView.backgroundColor = [UIColor clearColor];
+//            imageView.hidden = NO;
+//            [UIView animateWithDuration:.25 animations:^{
+//                imageView.frame = tempF;
+//            } completion:^(BOOL finished) {
+//                [mainView removeFromSuperview];
+//            }];
+//        };
+//        scrollView.frame = [UIScreen mainScreen].bounds;
+//        scrollView.photo = photo;
+//        [mainView addSubview:scrollView];
     }];
 }
 

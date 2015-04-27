@@ -9,13 +9,51 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property (strong,nonatomic) NSArray *examples;
 @end
 
 @implementation ViewController
 
+- (NSArray *)examples{
+    if (!_examples) {
+        _examples = @[
+                      @"scale browser animation",
+                      @"fade brower animation"
+                      ];
+    }
+    return _examples;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    self.title = @"MLPhotoBrowser";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.examples.count;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *ID = @"cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    
+    cell.textLabel.text = self.examples[indexPath.row];
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIViewController *viewController = [[NSClassFromString([NSString stringWithFormat:@"Example%ldViewController",indexPath.row+1]) alloc] init];
+    viewController.title = self.examples[indexPath.row];
+    [self.navigationController pushViewController:viewController animated:YES];
     
 }
 
