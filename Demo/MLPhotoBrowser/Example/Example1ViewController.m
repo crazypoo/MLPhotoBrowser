@@ -27,6 +27,54 @@
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
                                                    @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
+                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg"
                                                    ]];
     }
@@ -37,7 +85,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
     
     // 这个属性不能少
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -50,7 +97,7 @@
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.scrollView = scrollView;
     
-    // 属性scrollView
+    // 创建九宫格View
     [self reloadScrollView];
 }
 
@@ -92,7 +139,9 @@
     // 图片游览器
     MLPhotoBrowserViewController *photoBrowser = [[MLPhotoBrowserViewController alloc] init];
     // 缩放动画
-     photoBrowser.status = UIViewAnimationAnimationStatusZoom;
+    photoBrowser.status = UIViewAnimationAnimationStatusZoom;
+    // 可以删除
+    photoBrowser.editing = YES;
     // 数据源/delegate
     photoBrowser.delegate = self;
     photoBrowser.dataSource = self;
@@ -118,5 +167,12 @@
     photo.toView = btn.imageView;
     photo.thumbImage = btn.imageView.image;
     return photo;
+}
+
+#pragma mark - <MLPhotoBrowserViewControllerDelegate>
+- (void)photoBrowser:(MLPhotoBrowserViewController *)photoBrowser removePhotoAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.photos removeObjectAtIndex:indexPath.row];
+    [self reloadScrollView];
 }
 @end

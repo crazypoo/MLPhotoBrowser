@@ -12,6 +12,7 @@
 #import "MLPhotoBrowserDatas.h"
 #import "UIView+MLExtension.h"
 #import "MLPhotoBrowserPhotoScrollView.h"
+#import "UIImage+MLImageForBundle.h"
 
 // 点击销毁的block
 typedef void(^ZLPickerBrowserViewControllerTapDisMissBlock)(NSInteger);
@@ -91,7 +92,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         deleleBtn.translatesAutoresizingMaskIntoConstraints = NO;
         deleleBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         //        [deleleBtn setTitle:@"删除" forState:UIControlStateNormal];
-        [deleleBtn setImage:[UIImage imageNamed:@"nav_delete_btn"] forState:UIControlStateNormal];
+        [deleleBtn setImage:[UIImage ml_imageFromBundleNamed:@"nav_delete_btn"] forState:UIControlStateNormal];
         
         // 设置阴影
         deleleBtn.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -184,8 +185,8 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 #pragma mark - reloadData
 - (void) reloadData{
     self.currentPage = self.currentIndexPath.row;
-    self.collectionView.dataSource = self;
-    [self.collectionView reloadData];
+//    self.collectionView.dataSource = self;
+    [self.collectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
     
     // 添加自定义View
     if ([self.delegate respondsToSelector:@selector(photoBrowserShowToolBarViewWithphotoBrowser:)]) {
@@ -210,8 +211,16 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
             attachVal = ZLPickerColletionViewPadding;
         }
         
-        self.collectionView.ml_x = -attachVal;
-        self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+//        self.collectionView.ml_x = 0;
+//        self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+        if (self.currentPage == self.photos.count - 1) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+            });
+        }else{
+            self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+        }
+        
     }
 }
 
@@ -298,7 +307,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSInteger currentPage = (NSInteger)scrollView.contentOffset.x / (scrollView.ml_width - ZLPickerColletionViewPadding);
+    NSInteger currentPage = (NSInteger)scrollView.contentOffset.x / (scrollView.ml_width);
     
     if (currentPage == self.photos.count - 1 && currentPage != self.currentPage && [[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
         self.collectionView.contentOffset = CGPointMake(self.collectionView.contentOffset.x + ZLPickerColletionViewPadding, 0);
@@ -427,10 +436,12 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         imageView.image = [(UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView] image];
         imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds];
         
+        [weakSelf dismissViewControllerAnimated:NO completion:nil];
+        
         // 不是淡入淡出
         if (self.status == UIViewAnimationAnimationStatusFade){
-            [weakSelf dismissViewControllerAnimated:NO completion:nil];
         }else if(self.status == UIViewAnimationAnimationStatusZoom){
+
             UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
             originalFrame = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
         }
@@ -440,10 +451,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
                 imageView.alpha = 0.0;
                 mainView.alpha = 0.0;
             }else if(weakSelf.status == UIViewAnimationAnimationStatusZoom){
+                mainView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
                 imageView.frame = originalFrame;
             }
         } completion:^(BOOL finished) {
-            [weakSelf dismissViewControllerAnimated:NO completion:nil];
             [mainView removeFromSuperview];
             [imageView removeFromSuperview];
         }];

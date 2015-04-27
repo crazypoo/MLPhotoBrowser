@@ -10,6 +10,7 @@
 
 #import "Example3ViewController.h"
 #import "MLPhotoBrowserSignleViewController.h"
+#import "UIImage+MLImageForBundle.h"
 
 @interface Example3ViewController ()
 
@@ -24,7 +25,7 @@
     
     UIButton *headerView = [[UIButton alloc] init];
     headerView.frame = CGRectMake(100, 100, 50, 50);
-    [headerView setImage:[UIImage imageNamed:@"example6.jpeg"] forState:UIControlStateNormal];
+    [headerView setImage:[UIImage ml_imageFromBundleNamed:@"header.jpeg"] forState:UIControlStateNormal];
     [headerView addTarget:self action:@selector(showHeadPortrait:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:headerView];
 }

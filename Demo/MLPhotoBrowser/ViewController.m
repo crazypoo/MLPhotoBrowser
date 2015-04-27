@@ -17,10 +17,9 @@
 - (NSArray *)examples{
     if (!_examples) {
         _examples = @[
-                      @"scale browser animation",
-                      @"fade brower animation",
-                      @"push brower animation",
-                      @"show signle browser in Portrait",
+                      @"Scale Browser",
+                      @"Fade Browser",
+                      @"Show Signle Browser in Portrait",
                       ];
     }
     return _examples;
@@ -45,6 +44,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     cell.textLabel.text = self.examples[indexPath.row];
     return cell;
