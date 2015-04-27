@@ -7,13 +7,11 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <objc/runtime.h>
 #import "MLPhotoBrowserViewController.h"
 #import "MLPhotoBrowserPhoto.h"
 #import "MLPhotoBrowserDatas.h"
 #import "UIView+MLExtension.h"
 #import "MLPhotoBrowserPhotoScrollView.h"
-//#import "ZLAnimationScrollView.h"
 
 // 点击销毁的block
 typedef void(^ZLPickerBrowserViewControllerTapDisMissBlock)(NSInteger);
@@ -42,7 +40,6 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 @property (nonatomic , assign) NSInteger currentPage;
 
 @end
-
 
 @implementation MLPhotoBrowserViewController
 
@@ -149,9 +146,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     [super viewDidAppear:animated];
     NSAssert(self.dataSource, @"你没成为数据源代理");
     
-    MLPhotoBrowserPhoto *photo = [self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath];
-    
-    [self showHeadPortrait:photo.toView];
+    [self showToView];
 }
 
 - (void)dealloc{
@@ -186,63 +181,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     return [self getParsentView:view.superview];
 }
 
-- (id)getParsentViewController:(UIView *)view{
-    if ([[view nextResponder] isKindOfClass:[UIViewController class]] || view == nil) {
-        return [view nextResponder];
-    }
-    return [self getParsentViewController:view.superview];
-}
-
-#pragma makr - init Animation
-- (void)startLogddingAnimation{
-//    if (!(self.toView) ) {
-//        [self reloadData];
-//        return;
-//    }
-    
-//    // 判断是否是控制器
-//    UIView *fromView = object_getIvar(self.dataSource, class_getInstanceVariable([self.dataSource class],"_view"));
-//    // 如果是自定义View
-//    if (fromView == nil) {
-//        fromView = [self getParsentView:self.toView];
-//    }
-//    
-//    if (!self.currentIndexPath) {
-//        self.currentIndexPath = [NSIndexPath indexPathForItem:self.currentPage inSection:0];
-//    }else{
-//        self.currentPage = self.currentIndexPath.row;
-//    }
-//    
-//    NSDictionary *options = @{
-//                              UIViewAnimationInView:self.view,
-//                              UIViewAnimationFromView:fromView,
-//                              UIViewAnimationAnimationStatusType:@(self.status),
-//                              UIViewAnimationNavigationHeight : @(self.navigationHeight),
-//                              UIViewAnimationToView:self.toView,
-//                              UIViewAnimationFromView:self.dataSource,
-//                              UIViewAnimationImages:self.photos,
-//                              UIViewAnimationTypeViewWithIndexPath:self.currentIndexPath
-//                              };
-//    
-//    __weak typeof(self) weakSelf = self;
-//    
-//    [ZLAnimationScrollView animationViewWithOptions:options animations:nil completion:^(ZLAnimationBaseView *baseView) {
-//        // disMiss后调用
-//        weakSelf.disMissBlock = ^(NSInteger page){
-//            if (self.currentIndexPath) {
-//                [ZLAnimationScrollView setCurrentIndexPath:[NSIndexPath indexPathForItem:page inSection:self.currentIndexPath.section]];
-//            }else{
-//                [ZLAnimationScrollView setCurrentIndexPath:[NSIndexPath indexPathForItem:page inSection:0]];
-//            }
-//            [weakSelf dismissViewControllerAnimated:NO completion:nil];
-//            [ZLAnimationScrollView restoreAnimation:nil];
-//        };
-//        [weakSelf reloadData];
-//    }];
-}
-
 #pragma mark - reloadData
 - (void) reloadData{
+    self.currentPage = self.currentIndexPath.row;
+    self.collectionView.dataSource = self;
     [self.collectionView reloadData];
     
     // 添加自定义View
@@ -271,9 +213,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         self.collectionView.ml_x = -attachVal;
         self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
     }
-    
 }
-
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -319,19 +259,6 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         
         [scrollBoxView addSubview:scrollView];
         scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        if (self.currentPage == self.photos.count - 1 && scrollView.ml_x >= 0 && !collectionView.isDragging) {
-//            UICollectionView *collecitonView2 = (UICollectionView *)[self getScrollViewBaseViewWithCell:self.toView] ;
-//            if ([collecitonView2 isMemberOfClass:[UICollectionView class]]) {
-//                UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collecitonView2.collectionViewLayout;
-//                if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
-//                    scrollView.ml_x = -ZLPickerColletionViewPadding;
-//                }else{
-//                }
-//            }else{
-//                scrollView.ml_x = 0;
-//            }
-        }
-        
     }
     
     return cell;
@@ -464,54 +391,88 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - showHeadPortrait 放大缩小一张图片的情况下（查看头像）
-- (void)showHeadPortrait:(UIImageView *)toImageView{
-    [self showHeadPortrait:toImageView originUrl:nil];
-}
-
-- (void)showHeadPortrait:(UIImageView *)toImageView originUrl:(NSString *)originUrl{
+- (void)showToView{
     UIView *mainView = [[UIView alloc] init];
     mainView.backgroundColor = [UIColor blackColor];
     mainView.frame = [UIScreen mainScreen].bounds;
     [[UIApplication sharedApplication].keyWindow addSubview:mainView];
+    
+    UIImageView *toImageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath] toView];
     
     CGRect tempF = [toImageView.superview convertRect:toImageView.frame toView:[self getParsentView:toImageView]];
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.userInteractionEnabled = YES;
     imageView.frame = tempF;
     imageView.image = toImageView.image;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     [mainView addSubview:imageView];
     mainView.clipsToBounds = YES;
     
-    [UIView animateWithDuration:0.25 animations:^{
-        imageView.frame = [UIScreen mainScreen].bounds;
-    } completion:^(BOOL finished) {
-        imageView.hidden = YES;
-        [mainView removeFromSuperview];
+    __weak typeof(self)weakSelf = self;
+    self.disMissBlock = ^(NSInteger page){
+        imageView.image = [(UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView] image];
+        imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds];
+        mainView.hidden = NO;
         
-//        MLPhotoBrowserPhoto *photo = [[MLPhotoBrowserPhoto alloc] init];
-//        photo.photoURL = [NSURL URLWithString:originUrl];
-//        photo.photoImage = toImageView.image;
-//        photo.thumbImage = toImageView.image;
-//        
-//        MLPhotoBrowserPhotoScrollView *scrollView = [[MLPhotoBrowserPhotoScrollView alloc] init];
-//        
-//        __weak typeof(MLPhotoBrowserPhotoScrollView *)weakScrollView = scrollView;
-//        scrollView.callback = ^(id obj){
-//            [weakScrollView removeFromSuperview];
-//            mainView.backgroundColor = [UIColor clearColor];
-//            imageView.hidden = NO;
-//            [UIView animateWithDuration:.25 animations:^{
-//                imageView.frame = tempF;
-//            } completion:^(BOOL finished) {
-//                [mainView removeFromSuperview];
-//            }];
-//        };
-//        scrollView.frame = [UIScreen mainScreen].bounds;
-//        scrollView.photo = photo;
-//        [mainView addSubview:scrollView];
+        UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
+        CGRect tempF2 = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            imageView.frame = tempF2;
+        } completion:^(BOOL finished) {
+            [imageView removeFromSuperview];
+            [mainView removeFromSuperview];
+            [weakSelf dismissViewControllerAnimated:NO completion:nil];
+        }];
+    };
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+    } completion:^(BOOL finished) {
+        mainView.hidden = YES;
     }];
+}
+
+- (CGRect)setMaxMinZoomScalesForCurrentBounds {
+    UIImageView *imageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:[NSIndexPath indexPathForItem:self.currentPage inSection:self.currentIndexPath.section]] toView];
+    if (!([imageView isKindOfClass:[UIImageView class]]) || imageView.image == nil) {
+        if (!([imageView isKindOfClass:[UIImageView class]])) {
+            return imageView.frame;
+        }
+    }
+    
+    // Sizes
+    CGSize boundsSize = [UIScreen mainScreen].bounds.size;
+    CGSize imageSize = imageView.image.size;
+    if (imageSize.width == 0 && imageSize.height == 0) {
+        return imageView.frame;
+    }
+    
+    CGFloat xScale = boundsSize.width / imageSize.width;    // the scale needed to perfectly fit the image width-wise
+    CGFloat yScale = boundsSize.height / imageSize.height;  // the scale needed to perfectly fit the image height-wise
+    CGFloat minScale = MIN(xScale, yScale);                 // use minimum of these to allow the image to become fully visible
+    // Image is smaller than screen so no zooming!
+    if (xScale >= 1 && yScale >= 1) {
+        minScale = MIN(xScale, yScale);
+    }
+    
+    CGRect frameToCenter = CGRectMake(0, 0, imageSize.width * minScale, imageSize.height * minScale);
+    
+    // Horizontally
+    if (frameToCenter.size.width < boundsSize.width) {
+        frameToCenter.origin.x = floorf((boundsSize.width - frameToCenter.size.width) / 2.0);
+    } else {
+        frameToCenter.origin.x = 0;
+    }
+    
+    // Vertically
+    if (frameToCenter.size.height < boundsSize.height) {
+        frameToCenter.origin.y = floorf((boundsSize.height - frameToCenter.size.height) / 2.0);
+    } else {
+        frameToCenter.origin.y = 0;
+    }
+    
+    return frameToCenter;
 }
 
 @end
