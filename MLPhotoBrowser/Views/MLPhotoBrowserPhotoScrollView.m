@@ -130,7 +130,7 @@ static NSInteger const ZLPickerProgressViewH = 50;
             
             // 网络URL
             [_photoImageView sd_setImageWithURL:photo.photoURL placeholderImage:thumbImage options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                _photoImageView.progress = (double)receivedSize / expectedSize;
+                self.progress = (double)receivedSize / expectedSize;
             } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 _photoImageView.image = image;
                 [weakSelf displayImage];

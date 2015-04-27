@@ -13,7 +13,7 @@
 // 点击图片浏览器,浏览时的动画
 typedef NS_ENUM(NSUInteger, UIViewAnimationAnimationStatus) {
     UIViewAnimationAnimationStatusZoom = 0, // 放大缩小
-    UIViewAnimationAnimationStatusFade , // 淡入淡出
+    UIViewAnimationAnimationStatusFade, // 淡入淡出
 };
 
 @class MLPhotoBrowserViewController;

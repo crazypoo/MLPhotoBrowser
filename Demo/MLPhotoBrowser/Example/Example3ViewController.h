@@ -1,5 +1,5 @@
 //
-//  Example3ViewController.h
+//  Example4ViewController.h
 //  MLPhotoBrowser
 //
 //  Created by 张磊 on 15/4/27.

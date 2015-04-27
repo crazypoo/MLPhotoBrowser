@@ -1,6 +1,6 @@
 //
-//  @Author : <#Author#>
-//  @Desc   : <#Desc#>
+//  @Author : MakeZL
+//  @Desc   : 放大缩小浏览
 //
 //  MLPhotoBrowser
 //
@@ -26,6 +26,7 @@
                                                    @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
                                                    @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+                                                   @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg"
                                                    ]];
     }
@@ -89,18 +90,16 @@
 - (void)tapBrowser:(UIButton *)btn{
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:btn.tag inSection:0];
     // 图片游览器
-    MLPhotoBrowserViewController *pickerBrowser = [[MLPhotoBrowserViewController alloc] init];
-    // 淡入淡出效果
-    // pickerBrowser.status = UIViewAnimationAnimationStatusFade;
-    // 传入点击图片View的话，会有微信朋友圈照片的风格
+    MLPhotoBrowserViewController *photoBrowser = [[MLPhotoBrowserViewController alloc] init];
+    // 缩放动画
+     photoBrowser.status = UIViewAnimationAnimationStatusZoom;
     // 数据源/delegate
-    pickerBrowser.delegate = self;
-    pickerBrowser.dataSource = self;
+    photoBrowser.delegate = self;
+    photoBrowser.dataSource = self;
     // 当前选中的值
-    pickerBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+    photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     // 展示控制器
-    [self.navigationController presentViewController:pickerBrowser animated:NO completion:nil];
-//    [pickerBrowser show];
+    [self.navigationController presentViewController:photoBrowser animated:NO completion:nil];
 }
 
 

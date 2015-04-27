@@ -255,6 +255,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
             scrollView.callback = ^(id obj){
                 [weakSelf.delegate photoBrowser:weakSelf photoDidSelectView:weakScrollBoxView atIndexPath:indexPath];
             };
+            
         }
         
         [scrollBoxView addSubview:scrollView];
@@ -413,7 +414,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     if (self.status == UIViewAnimationAnimationStatusFade){
         imageView.alpha = 0.0;
         imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
-    }else{
+    }else if(self.status == UIViewAnimationAnimationStatusZoom){
         CGRect tempF = [toImageView.superview convertRect:toImageView.frame toView:[self getParsentView:toImageView]];
         imageView.frame = tempF;
     }
@@ -427,21 +428,22 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds];
         
         // 不是淡入淡出
-        if (self.status != UIViewAnimationAnimationStatusFade){
+        if (self.status == UIViewAnimationAnimationStatusFade){
+            [weakSelf dismissViewControllerAnimated:NO completion:nil];
+        }else if(self.status == UIViewAnimationAnimationStatusZoom){
             UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
             originalFrame = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
-        }else{
-            [weakSelf dismissViewControllerAnimated:NO completion:nil];
         }
         
         [UIView animateWithDuration:0.25 animations:^{
-            if (self.status == UIViewAnimationAnimationStatusFade){
+            if (weakSelf.status == UIViewAnimationAnimationStatusFade){
                 imageView.alpha = 0.0;
                 mainView.alpha = 0.0;
-            }else{
+            }else if(weakSelf.status == UIViewAnimationAnimationStatusZoom){
                 imageView.frame = originalFrame;
             }
         } completion:^(BOOL finished) {
+            [weakSelf dismissViewControllerAnimated:NO completion:nil];
             [mainView removeFromSuperview];
             [imageView removeFromSuperview];
         }];
@@ -451,7 +453,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
         if (self.status == UIViewAnimationAnimationStatusFade){
             // 淡入淡出
             imageView.alpha = 1.0;
-        }else{
+        }else if(self.status == UIViewAnimationAnimationStatusZoom){
             imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
         }
     } completion:^(BOOL finished) {

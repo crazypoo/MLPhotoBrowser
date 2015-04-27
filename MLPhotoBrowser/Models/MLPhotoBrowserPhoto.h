@@ -40,5 +40,9 @@
  *  传入一个图片对象，可以是URL/UIImage/NSString，返回一个实例
  */
 + (instancetype)photoAnyImageObjWith:(id)imageObj;
+/**
+ *  传入一个MLPhotoBrowserAssets对象，返回一个UIImage
+ */
++ (UIImage *)getImageWithAssets:(MLPhotoBrowserAssets *)asset;
 
 @end

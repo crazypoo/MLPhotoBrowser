@@ -9,6 +9,7 @@
 //
 
 #import "Example3ViewController.h"
+#import "MLPhotoBrowserSignleViewController.h"
 
 @interface Example3ViewController ()
 
@@ -16,24 +17,22 @@
 
 @implementation Example3ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *headerView = [[UIButton alloc] init];
+    headerView.frame = CGRectMake(100, 100, 50, 50);
+    [headerView setImage:[UIImage imageNamed:@"example6.jpeg"] forState:UIControlStateNormal];
+    [headerView addTarget:self action:@selector(showHeadPortrait:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:headerView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark 传入imageView放大
+- (void)showHeadPortrait:(UIButton *)btn{
+    MLPhotoBrowserSignleViewController *browserVc = [[MLPhotoBrowserSignleViewController alloc] init];
+    [browserVc showHeadPortrait:btn.imageView originUrl:@"https://avatars0.githubusercontent.com/u/7121927?v=3&s=460"];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

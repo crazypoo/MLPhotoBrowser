@@ -1,6 +1,6 @@
 //
 //  @Author : MakeZL
-//  @Desc   : 例子2
+//  @Desc   : 淡入淡出浏览
 //
 //  MLPhotoBrowser
 //
@@ -98,7 +98,6 @@
     photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     // 展示控制器
     [self.navigationController presentViewController:photoBrowser animated:NO completion:nil];
-    //    [pickerBrowser show];
 }
 
 
