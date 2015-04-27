@@ -18,7 +18,9 @@
     if (!_examples) {
         _examples = @[
                       @"scale browser animation",
-                      @"fade brower animation"
+                      @"fade brower animation",
+                      @"push brower animation",
+                      @"show signle browser in Portrait",
                       ];
     }
     return _examples;

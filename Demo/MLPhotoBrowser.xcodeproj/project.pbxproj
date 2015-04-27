@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		481E7DC51AEE1D35008A7986 /* MLPhotoBrowserSignleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DC41AEE1D35008A7986 /* MLPhotoBrowserSignleViewController.m */; };
+		481E7DC81AEE292A008A7986 /* Example2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DC71AEE292A008A7986 /* Example2ViewController.m */; };
+		481E7DCB1AEE2933008A7986 /* Example3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DCA1AEE2933008A7986 /* Example3ViewController.m */; };
+		481E7DCE1AEE293D008A7986 /* Example4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DCD1AEE293D008A7986 /* Example4ViewController.m */; };
 		48CE80751AEDDC3A00AD85BB /* MLPhotoBrowserAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80621AEDDC3A00AD85BB /* MLPhotoBrowserAssets.m */; };
 		48CE80761AEDDC3A00AD85BB /* MLPhotoBrowserDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80641AEDDC3A00AD85BB /* MLPhotoBrowserDatas.m */; };
 		48CE80771AEDDC3A00AD85BB /* MLPhotoBrowserPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80661AEDDC3A00AD85BB /* MLPhotoBrowserPhoto.m */; };
@@ -42,6 +45,12 @@
 		1C1FAD5CFBBF4507DE35E9F2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		481E7DC31AEE1D35008A7986 /* MLPhotoBrowserSignleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserSignleViewController.h; sourceTree = "<group>"; };
 		481E7DC41AEE1D35008A7986 /* MLPhotoBrowserSignleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserSignleViewController.m; sourceTree = "<group>"; };
+		481E7DC61AEE292A008A7986 /* Example2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example2ViewController.h; sourceTree = "<group>"; };
+		481E7DC71AEE292A008A7986 /* Example2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example2ViewController.m; sourceTree = "<group>"; };
+		481E7DC91AEE2933008A7986 /* Example3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example3ViewController.h; sourceTree = "<group>"; };
+		481E7DCA1AEE2933008A7986 /* Example3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example3ViewController.m; sourceTree = "<group>"; };
+		481E7DCC1AEE293D008A7986 /* Example4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example4ViewController.h; sourceTree = "<group>"; };
+		481E7DCD1AEE293D008A7986 /* Example4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example4ViewController.m; sourceTree = "<group>"; };
 		48CE80611AEDDC3A00AD85BB /* MLPhotoBrowserAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserAssets.h; sourceTree = "<group>"; };
 		48CE80621AEDDC3A00AD85BB /* MLPhotoBrowserAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserAssets.m; sourceTree = "<group>"; };
 		48CE80631AEDDC3A00AD85BB /* MLPhotoBrowserDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserDatas.h; sourceTree = "<group>"; };
@@ -155,6 +164,12 @@
 			children = (
 				48CE807F1AEDE3F700AD85BB /* Example1ViewController.h */,
 				48CE80801AEDE3F700AD85BB /* Example1ViewController.m */,
+				481E7DC61AEE292A008A7986 /* Example2ViewController.h */,
+				481E7DC71AEE292A008A7986 /* Example2ViewController.m */,
+				481E7DC91AEE2933008A7986 /* Example3ViewController.h */,
+				481E7DCA1AEE2933008A7986 /* Example3ViewController.m */,
+				481E7DCC1AEE293D008A7986 /* Example4ViewController.h */,
+				481E7DCD1AEE293D008A7986 /* Example4ViewController.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -375,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D198FD1AED379500762BC2 /* ViewController.m in Sources */,
+				481E7DCB1AEE2933008A7986 /* Example3ViewController.m in Sources */,
 				48D198FA1AED379500762BC2 /* AppDelegate.m in Sources */,
 				48D198F71AED379500762BC2 /* main.m in Sources */,
 				48CE807A1AEDDC3A00AD85BB /* MLPhotoBrowserCustomToolBarView.m in Sources */,
@@ -382,8 +398,10 @@
 				48CE80761AEDDC3A00AD85BB /* MLPhotoBrowserDatas.m in Sources */,
 				48CE807B1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoImageView.m in Sources */,
 				48CE807C1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoScrollView.m in Sources */,
+				481E7DCE1AEE293D008A7986 /* Example4ViewController.m in Sources */,
 				48CE807D1AEDDC3A00AD85BB /* MLPhotoBrowserPhotoView.m in Sources */,
 				48CE80811AEDE3F700AD85BB /* Example1ViewController.m in Sources */,
+				481E7DC81AEE292A008A7986 /* Example2ViewController.m in Sources */,
 				48CE80751AEDDC3A00AD85BB /* MLPhotoBrowserAssets.m in Sources */,
 				48CE80771AEDDC3A00AD85BB /* MLPhotoBrowserPhoto.m in Sources */,
 				48CE80791AEDDC3A00AD85BB /* MLPhotoBrowserViewController.m in Sources */,

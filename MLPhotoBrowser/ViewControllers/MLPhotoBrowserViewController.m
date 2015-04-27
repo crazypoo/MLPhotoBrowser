@@ -324,7 +324,6 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 #pragma mark - 删除照片
 - (void) delete{
-    
     // 准备删除
     if ([self.delegate respondsToSelector:@selector(photoBrowser:willRemovePhotoAtIndexPath:)]) {
         if(![self.delegate photoBrowser:self willRemovePhotoAtIndexPath:[NSIndexPath indexPathForItem:self.currentPage inSection:self.currentIndexPath.section]]){
@@ -399,35 +398,62 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     
     UIImageView *toImageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath] toView];
     
-    CGRect tempF = [toImageView.superview convertRect:toImageView.frame toView:[self getParsentView:toImageView]];
+    if (![toImageView isKindOfClass:[UIImageView class]]) {
+        assert(@"error: need toView `UIImageView` class.");
+        return;
+    }
+    
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.userInteractionEnabled = YES;
-    imageView.frame = tempF;
     imageView.image = toImageView.image;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     [mainView addSubview:imageView];
     mainView.clipsToBounds = YES;
     
+    if (self.status == UIViewAnimationAnimationStatusFade){
+        imageView.alpha = 0.0;
+        imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+    }else{
+        CGRect tempF = [toImageView.superview convertRect:toImageView.frame toView:[self getParsentView:toImageView]];
+        imageView.frame = tempF;
+    }
+    
     __weak typeof(self)weakSelf = self;
     self.disMissBlock = ^(NSInteger page){
+        mainView.hidden = NO;
+        CGRect originalFrame = CGRectZero;
+        
         imageView.image = [(UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView] image];
         imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds];
-        mainView.hidden = NO;
         
-        UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
-        CGRect tempF2 = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
+        // 不是淡入淡出
+        if (self.status != UIViewAnimationAnimationStatusFade){
+            UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
+            originalFrame = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
+        }else{
+            [weakSelf dismissViewControllerAnimated:NO completion:nil];
+        }
         
         [UIView animateWithDuration:0.25 animations:^{
-            imageView.frame = tempF2;
+            if (self.status == UIViewAnimationAnimationStatusFade){
+                imageView.alpha = 0.0;
+                mainView.alpha = 0.0;
+            }else{
+                imageView.frame = originalFrame;
+            }
         } completion:^(BOOL finished) {
-            [imageView removeFromSuperview];
             [mainView removeFromSuperview];
-            [weakSelf dismissViewControllerAnimated:NO completion:nil];
+            [imageView removeFromSuperview];
         }];
     };
     
     [UIView animateWithDuration:0.25 animations:^{
-        imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+        if (self.status == UIViewAnimationAnimationStatusFade){
+            // 淡入淡出
+            imageView.alpha = 1.0;
+        }else{
+            imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+        }
     } completion:^(BOOL finished) {
         mainView.hidden = YES;
     }];

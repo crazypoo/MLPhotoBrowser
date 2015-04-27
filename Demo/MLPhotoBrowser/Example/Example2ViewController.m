@@ -1,6 +1,6 @@
 //
-//  @Author : <#Author#>
-//  @Desc   : <#Desc#>
+//  @Author : MakeZL
+//  @Desc   : 例子2
 //
 //  MLPhotoBrowser
 //
@@ -8,18 +8,18 @@
 //  Copyright (c) 2015年 www.weibo.com/makezl. All rights reserved.
 //
 
-#import "Example1ViewController.h"
+#import "Example2ViewController.h"
 #import "MLPhotoBrowserAssets.h"
 #import "MLPhotoBrowserViewController.h"
 #import <UIButton+WebCache.h>
 
-@interface Example1ViewController () <MLPhotoBrowserViewControllerDataSource,MLPhotoBrowserViewControllerDelegate>
+@interface Example2ViewController () <MLPhotoBrowserViewControllerDataSource,MLPhotoBrowserViewControllerDelegate>
 
 @property (weak,nonatomic) UIScrollView *scrollView;
 @property (strong,nonatomic) NSMutableArray *photos;
 @end
 
-@implementation Example1ViewController
+@implementation Example2ViewController
 - (NSMutableArray *)photos{
     if (!_photos) {
         _photos = [NSMutableArray arrayWithArray:@[
@@ -36,7 +36,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
     
     // 这个属性不能少
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -89,18 +88,17 @@
 - (void)tapBrowser:(UIButton *)btn{
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:btn.tag inSection:0];
     // 图片游览器
-    MLPhotoBrowserViewController *pickerBrowser = [[MLPhotoBrowserViewController alloc] init];
+    MLPhotoBrowserViewController *photoBrowser = [[MLPhotoBrowserViewController alloc] init];
     // 淡入淡出效果
-    // pickerBrowser.status = UIViewAnimationAnimationStatusFade;
-    // 传入点击图片View的话，会有微信朋友圈照片的风格
+    photoBrowser.status = UIViewAnimationAnimationStatusFade;
     // 数据源/delegate
-    pickerBrowser.delegate = self;
-    pickerBrowser.dataSource = self;
+    photoBrowser.delegate = self;
+    photoBrowser.dataSource = self;
     // 当前选中的值
-    pickerBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
+    photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     // 展示控制器
-    [self.navigationController presentViewController:pickerBrowser animated:NO completion:nil];
-//    [pickerBrowser show];
+    [self.navigationController presentViewController:photoBrowser animated:NO completion:nil];
+    //    [pickerBrowser show];
 }
 
 
@@ -121,3 +119,4 @@
     return photo;
 }
 @end
+
