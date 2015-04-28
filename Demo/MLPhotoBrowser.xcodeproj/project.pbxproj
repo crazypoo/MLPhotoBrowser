@@ -12,7 +12,6 @@
 		481E7DF51AEE4A99008A7986 /* MLPhotoBrowserAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DDF1AEE4A99008A7986 /* MLPhotoBrowserAssets.m */; };
 		481E7DF61AEE4A99008A7986 /* MLPhotoBrowserDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DE11AEE4A99008A7986 /* MLPhotoBrowserDatas.m */; };
 		481E7DF71AEE4A99008A7986 /* MLPhotoBrowserPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DE31AEE4A99008A7986 /* MLPhotoBrowserPhoto.m */; };
-		481E7DF81AEE4A99008A7986 /* UIView+MLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DE51AEE4A99008A7986 /* UIView+MLExtension.m */; };
 		481E7DF91AEE4A99008A7986 /* MLPhotoBrowserSignleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DE81AEE4A99008A7986 /* MLPhotoBrowserSignleViewController.m */; };
 		481E7DFA1AEE4A99008A7986 /* MLPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DEA1AEE4A99008A7986 /* MLPhotoBrowserViewController.m */; };
 		481E7DFB1AEE4A99008A7986 /* MLPhotoBrowserCustomToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DED1AEE4A99008A7986 /* MLPhotoBrowserCustomToolBarView.m */; };
@@ -20,7 +19,7 @@
 		481E7DFD1AEE4A99008A7986 /* MLPhotoBrowserPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DF11AEE4A99008A7986 /* MLPhotoBrowserPhotoScrollView.m */; };
 		481E7DFE1AEE4A99008A7986 /* MLPhotoBrowserPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7DF31AEE4A99008A7986 /* MLPhotoBrowserPhotoView.m */; };
 		481E7DFF1AEE4A99008A7986 /* MLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 481E7DF41AEE4A99008A7986 /* MLPhotoBrowser.bundle */; };
-		481E7E051AEE4C76008A7986 /* UIImage+MLImageForBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7E041AEE4C76008A7986 /* UIImage+MLImageForBundle.m */; };
+		481E7E051AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 481E7E041AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.m */; };
 		48CE80811AEDE3F700AD85BB /* Example1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE80801AEDE3F700AD85BB /* Example1ViewController.m */; };
 		48D198F71AED379500762BC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D198F61AED379500762BC2 /* main.m */; };
 		48D198FA1AED379500762BC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D198F91AED379500762BC2 /* AppDelegate.m */; };
@@ -54,8 +53,6 @@
 		481E7DE11AEE4A99008A7986 /* MLPhotoBrowserDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserDatas.m; sourceTree = "<group>"; };
 		481E7DE21AEE4A99008A7986 /* MLPhotoBrowserPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserPhoto.h; sourceTree = "<group>"; };
 		481E7DE31AEE4A99008A7986 /* MLPhotoBrowserPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserPhoto.m; sourceTree = "<group>"; };
-		481E7DE41AEE4A99008A7986 /* UIView+MLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MLExtension.h"; sourceTree = "<group>"; };
-		481E7DE51AEE4A99008A7986 /* UIView+MLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MLExtension.m"; sourceTree = "<group>"; };
 		481E7DE71AEE4A99008A7986 /* MLPhotoBrowserSignleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserSignleViewController.h; sourceTree = "<group>"; };
 		481E7DE81AEE4A99008A7986 /* MLPhotoBrowserSignleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserSignleViewController.m; sourceTree = "<group>"; };
 		481E7DE91AEE4A99008A7986 /* MLPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserViewController.h; sourceTree = "<group>"; };
@@ -69,8 +66,8 @@
 		481E7DF21AEE4A99008A7986 /* MLPhotoBrowserPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPhotoBrowserPhotoView.h; sourceTree = "<group>"; };
 		481E7DF31AEE4A99008A7986 /* MLPhotoBrowserPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPhotoBrowserPhotoView.m; sourceTree = "<group>"; };
 		481E7DF41AEE4A99008A7986 /* MLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MLPhotoBrowser.bundle; sourceTree = "<group>"; };
-		481E7E031AEE4C76008A7986 /* UIImage+MLImageForBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MLImageForBundle.h"; sourceTree = "<group>"; };
-		481E7E041AEE4C76008A7986 /* UIImage+MLImageForBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MLImageForBundle.m"; sourceTree = "<group>"; };
+		481E7E031AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MLBrowserPhotoImageForBundle.h"; sourceTree = "<group>"; };
+		481E7E041AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MLBrowserPhotoImageForBundle.m"; sourceTree = "<group>"; };
 		48CE807F1AEDE3F700AD85BB /* Example1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example1ViewController.h; sourceTree = "<group>"; };
 		48CE80801AEDE3F700AD85BB /* Example1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example1ViewController.m; sourceTree = "<group>"; };
 		48D198F11AED379500762BC2 /* MLPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,11 +119,9 @@
 		481E7DDC1AEE4A99008A7986 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				481E7E031AEE4C76008A7986 /* UIImage+MLImageForBundle.h */,
-				481E7E041AEE4C76008A7986 /* UIImage+MLImageForBundle.m */,
+				481E7E031AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.h */,
+				481E7E041AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.m */,
 				481E7DDD1AEE4A99008A7986 /* Models */,
-				481E7DE41AEE4A99008A7986 /* UIView+MLExtension.h */,
-				481E7DE51AEE4A99008A7986 /* UIView+MLExtension.m */,
 				481E7DE61AEE4A99008A7986 /* ViewControllers */,
 				481E7DEB1AEE4A99008A7986 /* Views */,
 			);
@@ -402,13 +397,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				481E7DFE1AEE4A99008A7986 /* MLPhotoBrowserPhotoView.m in Sources */,
-				481E7E051AEE4C76008A7986 /* UIImage+MLImageForBundle.m in Sources */,
+				481E7E051AEE4C76008A7986 /* UIImage+MLBrowserPhotoImageForBundle.m in Sources */,
 				48D198FD1AED379500762BC2 /* ViewController.m in Sources */,
 				48D198FA1AED379500762BC2 /* AppDelegate.m in Sources */,
 				48D198F71AED379500762BC2 /* main.m in Sources */,
 				481E7DCE1AEE293D008A7986 /* Example3ViewController.m in Sources */,
 				481E7DF61AEE4A99008A7986 /* MLPhotoBrowserDatas.m in Sources */,
-				481E7DF81AEE4A99008A7986 /* UIView+MLExtension.m in Sources */,
 				481E7DFC1AEE4A99008A7986 /* MLPhotoBrowserPhotoImageView.m in Sources */,
 				48CE80811AEDE3F700AD85BB /* Example1ViewController.m in Sources */,
 				481E7DC81AEE292A008A7986 /* Example2ViewController.m in Sources */,

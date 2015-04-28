@@ -10,9 +10,8 @@
 #import "MLPhotoBrowserViewController.h"
 #import "MLPhotoBrowserPhoto.h"
 #import "MLPhotoBrowserDatas.h"
-#import "UIView+MLExtension.h"
 #import "MLPhotoBrowserPhotoScrollView.h"
-#import "UIImage+MLImageForBundle.h"
+#import "UIImage+MLBrowserPhotoImageForBundle.h"
 
 // 点击销毁的block
 typedef void(^ZLPickerBrowserViewControllerTapDisMissBlock)(NSInteger);
@@ -59,10 +58,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = ZLPickerColletionViewPadding;
-        flowLayout.itemSize = self.view.ml_size;
+        flowLayout.itemSize = self.view.frame.size;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.ml_width + ZLPickerColletionViewPadding,self.view.ml_height) collectionViewLayout:flowLayout];
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width + ZLPickerColletionViewPadding,self.view.frame.size.height) collectionViewLayout:flowLayout];
         collectionView.showsHorizontalScrollIndicator = NO;
         collectionView.showsVerticalScrollIndicator = NO;
         collectionView.pagingEnabled = YES;
@@ -192,15 +191,15 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     if ([self.delegate respondsToSelector:@selector(photoBrowserShowToolBarViewWithphotoBrowser:)]) {
         UIView *toolBarView = [self.delegate photoBrowserShowToolBarViewWithphotoBrowser:self];
         toolBarView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        CGFloat width = self.view.ml_width;
-        CGFloat x = self.view.ml_x;
-        if (toolBarView.ml_width) {
-            width = toolBarView.ml_width;
+        CGFloat width = self.view.frame.size.width;
+        CGFloat x = self.view.frame.origin.x;
+        if (toolBarView.frame.size.width) {
+            width = toolBarView.frame.size.width;
         }
-        if (toolBarView.ml_x) {
-            x = toolBarView.ml_x;
+        if (toolBarView.frame.origin.x) {
+            x = toolBarView.frame.origin.x;
         }
-        toolBarView.frame = CGRectMake(x, self.view.ml_height - 44, width, 44);
+        toolBarView.frame = CGRectMake(x, self.view.frame.size.height - 44, width, 44);
         [self.view addSubview:toolBarView];
     }
     
@@ -215,10 +214,10 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 //        self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
         if (self.currentPage == self.photos.count - 1) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+                self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.frame.size.width, 0);
             });
         }else{
-            self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.ml_width, 0);
+            self.collectionView.contentOffset = CGPointMake(self.currentPage * self.collectionView.frame.size.width, 0);
         }
         
     }
@@ -288,7 +287,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGRect tempF = self.collectionView.frame;
-    NSInteger currentPage = (NSInteger)((scrollView.contentOffset.x / scrollView.ml_width) + 0.5);
+    NSInteger currentPage = (NSInteger)((scrollView.contentOffset.x / scrollView.frame.size.width) + 0.5);
     if (tempF.size.width < [UIScreen mainScreen].bounds.size.width){
         tempF.size.width = [UIScreen mainScreen].bounds.size.width;
     }
@@ -307,7 +306,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSInteger currentPage = (NSInteger)scrollView.contentOffset.x / (scrollView.ml_width);
+    NSInteger currentPage = (NSInteger)scrollView.contentOffset.x / (scrollView.frame.size.width);
     
     if (currentPage == self.photos.count - 1 && currentPage != self.currentPage && [[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
         self.collectionView.contentOffset = CGPointMake(self.collectionView.contentOffset.x + ZLPickerColletionViewPadding, 0);

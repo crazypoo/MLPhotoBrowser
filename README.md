@@ -3,6 +3,9 @@ A simple iOS Photo browser Library, Support optional animation.
 
 ![image](https://github.com/MakeZL/MLPhotoBrowser/blob/master/screenhost.gif)
 
+### CocoaPod
+    pod search 'MLPhotoBrowser'
+    
 ### Use 
 ###### import "MLPhotoBrowserViewController.h"
 	// 图片游览器

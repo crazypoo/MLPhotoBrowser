@@ -10,7 +10,7 @@
 
 #import "Example3ViewController.h"
 #import "MLPhotoBrowserSignleViewController.h"
-#import "UIImage+MLImageForBundle.h"
+#import "UIImage+MLBrowserPhotoImageForBundle.h"
 
 @interface Example3ViewController ()
 
