@@ -280,6 +280,10 @@ static NSInteger const ZLPickerProgressViewH = 50;
         minScale = MIN(xScale, yScale);
     }
     
+    if (minScale >= 3) {
+        minScale = 1;
+    }
+    
     // Set min/max zoom
     self.maximumZoomScale = maxScale;
     self.minimumZoomScale = minScale;
