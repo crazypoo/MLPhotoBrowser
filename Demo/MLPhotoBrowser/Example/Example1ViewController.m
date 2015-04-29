@@ -148,7 +148,7 @@
     // 当前选中的值
     photoBrowser.currentIndexPath = [NSIndexPath indexPathForItem:indexPath.row inSection:0];
     // 展示控制器
-    [self.navigationController presentViewController:photoBrowser animated:NO completion:nil];
+    [photoBrowser show];
 }
 
 

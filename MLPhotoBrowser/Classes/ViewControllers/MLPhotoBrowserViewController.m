@@ -306,7 +306,11 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    NSInteger currentPage = (NSInteger)scrollView.contentOffset.x / (scrollView.frame.size.width);
+    NSInteger currentPage = (NSInteger)(scrollView.contentOffset.x / (scrollView.frame.size.width));
+    
+    if (currentPage == self.photos.count - 2) {
+        currentPage = roundf((scrollView.contentOffset.x) / (scrollView.frame.size.width));
+    }
     
     if (currentPage == self.photos.count - 1 && currentPage != self.currentPage && [[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0) {
         self.collectionView.contentOffset = CGPointMake(self.collectionView.contentOffset.x + ZLPickerColletionViewPadding, 0);
@@ -323,12 +327,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 
 #pragma mark - 展示控制器
 - (void)show{
-//    BOOL animation = !self.toView;
-//    if (animation) {
-//    [[[[UIApplication sharedApplication] windows] firstObject] presentViewController:self animated:NO completion:nil];
-//    }else{
-//        [[self getParsentViewController:self.toView] presentViewController:self animated:animation completion:nil];
-//    }
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self animated:NO completion:nil];
 }
 
 #pragma mark - 删除照片
