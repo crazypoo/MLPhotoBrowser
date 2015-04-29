@@ -22,8 +22,7 @@
 @implementation Example1ViewController
 - (NSMutableArray *)photos{
     if (!_photos) {
-        _photos = [NSMutableArray arrayWithArray:@[
-                                                   @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
+        _photos = [NSMutableArray arrayWithArray:@[@"http://182.254.191.205:1010/resources/uploadsources/member/440/dynamic/20150429202237748-1257891705.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",
                                                    @"http://imgsrc.baidu.com/forum/pic/item/3f7dacaf2edda3cc7d2289ab01e93901233f92c5.jpg",
                                                    @"http://123.57.17.222:8000/school/web/upload/20150316093117407_6246_9.jpg",

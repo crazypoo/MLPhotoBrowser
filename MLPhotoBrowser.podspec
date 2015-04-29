@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MLPhotoBrowser"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "A simple iOS Photo browser Library, Support optional animation."
   s.homepage         = "https://github.com/MakeZL/MLPhotoBrowser"
   s.license          = 'MIT'
