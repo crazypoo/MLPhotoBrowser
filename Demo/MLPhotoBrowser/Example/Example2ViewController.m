@@ -113,7 +113,6 @@
     photo.photoObj = [self.photos objectAtIndex:indexPath.row];
     // 缩略图
     UIButton *btn = self.scrollView.subviews[indexPath.row];
-    photo.toView = btn.imageView;
     photo.thumbImage = btn.imageView.image;
     return photo;
 }

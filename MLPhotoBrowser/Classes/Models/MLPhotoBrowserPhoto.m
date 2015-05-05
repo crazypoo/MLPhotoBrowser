@@ -47,7 +47,6 @@
 
 #pragma mark - 传入一个MLPhotoBrowserAssets对象，返回一个UIImage
 + (UIImage *)getImageWithAssets:(MLPhotoBrowserAssets *)asset{
-    UIImage *image = nil;
     if ([asset isKindOfClass:[MLPhotoBrowserAssets class]]) {
         return asset.thumbImage;
     }else if([asset isKindOfClass:[UIImage class]]){

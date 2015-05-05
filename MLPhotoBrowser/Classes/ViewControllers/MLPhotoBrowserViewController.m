@@ -404,23 +404,31 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     mainView.frame = [UIScreen mainScreen].bounds;
     [[UIApplication sharedApplication].keyWindow addSubview:mainView];
     
-    UIImageView *toImageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath] toView];
+    UIImageView *toImageView = nil;
+    if(self.status == UIViewAnimationAnimationStatusZoom){
+        toImageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath] toView];
+    }
     
-    if (![toImageView isKindOfClass:[UIImageView class]]) {
+    if (![toImageView isKindOfClass:[UIImageView class]] && self.status != UIViewAnimationAnimationStatusFade) {
         assert(@"error: need toView `UIImageView` class.");
         return;
     }
     
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.userInteractionEnabled = YES;
-    imageView.image = toImageView.image;
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     [mainView addSubview:imageView];
     mainView.clipsToBounds = YES;
     
     if (self.status == UIViewAnimationAnimationStatusFade){
+        imageView.image = [[self.dataSource photoBrowser:self photoAtIndexPath:self.currentIndexPath] thumbImage];
+    }else{
+        imageView.image = toImageView.image;
+    }
+    
+    if (self.status == UIViewAnimationAnimationStatusFade){
         imageView.alpha = 0.0;
-        imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+        imageView.frame = [self setMaxMinZoomScalesForCurrentBounds:imageView];
     }else if(self.status == UIViewAnimationAnimationStatusZoom){
         CGRect tempF = [toImageView.superview convertRect:toImageView.frame toView:[self getParsentView:toImageView]];
         imageView.frame = tempF;
@@ -430,15 +438,12 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     self.disMissBlock = ^(NSInteger page){
         mainView.hidden = NO;
         CGRect originalFrame = CGRectZero;
-        
-        imageView.image = [(UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView] image];
-        imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds];
-        
         [weakSelf dismissViewControllerAnimated:NO completion:nil];
         
         // 不是淡入淡出
-        if (self.status == UIViewAnimationAnimationStatusFade){
-        }else if(self.status == UIViewAnimationAnimationStatusZoom){
+        if(self.status == UIViewAnimationAnimationStatusZoom){
+            imageView.image = [(UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView] image];
+            imageView.frame = [weakSelf setMaxMinZoomScalesForCurrentBounds:imageView];
 
             UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
             originalFrame = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
@@ -463,15 +468,14 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
             // 淡入淡出
             imageView.alpha = 1.0;
         }else if(self.status == UIViewAnimationAnimationStatusZoom){
-            imageView.frame = [self setMaxMinZoomScalesForCurrentBounds];
+            imageView.frame = [self setMaxMinZoomScalesForCurrentBounds:imageView];
         }
     } completion:^(BOOL finished) {
         mainView.hidden = YES;
     }];
 }
 
-- (CGRect)setMaxMinZoomScalesForCurrentBounds {
-    UIImageView *imageView = (UIImageView *)[[self.dataSource photoBrowser:self photoAtIndexPath:[NSIndexPath indexPathForItem:self.currentPage inSection:self.currentIndexPath.section]] toView];
+- (CGRect)setMaxMinZoomScalesForCurrentBounds:(UIImageView *)imageView{
     if (!([imageView isKindOfClass:[UIImageView class]]) || imageView.image == nil) {
         if (!([imageView isKindOfClass:[UIImageView class]])) {
             return imageView.frame;
